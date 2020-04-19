@@ -1,6 +1,13 @@
 # pisyslog
 Uses rsyslog, and blinkt.
 
+# What is Syslog?
+Example of syslog output:
+![Syslog Example Image](https://i.imgur.com/HF5575C.png)
+
+https://en.wikipedia.org/wiki/Syslog
+
+
 **Set up rsyslog**
 `sudo nano /etc/rsyslog.conf`
 
