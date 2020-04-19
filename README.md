@@ -9,11 +9,13 @@ Uses rsyslog, and blinkt.
 #module(load="imudp")
 #input(type="imudp" port="514")
 ```
+
 **Uncomment TCP**
 ```
 #module(load="imtcp")
 #input(type="imtcp" port="514")
 ```
+
 `CTRL + O`
 `{Enter}`
 `CTRL + X`
@@ -26,16 +28,19 @@ Uses rsyslog, and blinkt.
 
 **Configure Log File**
 Enter content below, change router IP address as needed:
-```$template NetworkLog, "/var/log/syslog.log"
+```
+$template NetworkLog, "/var/log/syslog.log"
 :fromhost-ip, isequal, "192.168.0.1" -?NetworkLog
-& stop```
+& stop
+```
 
 **Create logrotate Config**
 `sudo nano /etc/logrotate.d/syslog-rotate.conf`
 
 **Configure logrotate File**
 Enter content below:
-```/var/log/syslog.log {
+```
+/var/log/syslog.log {
         rotate 7
         size 500k
         notifempty
@@ -43,7 +48,8 @@ Enter content below:
         postrotate
                 invoke-rc.d rsyslog rotate > /dev/null
         endscript
-}```
+}
+```
 
 # Install Blinkt!
 Follow instructions here: https://github.com/pimoroni/blinkt
@@ -52,5 +58,7 @@ Follow instructions here: https://github.com/pimoroni/blinkt
 `curl https://get.pimoroni.com/blinkt | bash`
 
 # Final Step
-```$ python3 syslog.py```
+```
+$ python3 syslog.py
+```
 Sit back and wait for the red LED when a DNS query is made to trigger the phrase match.
